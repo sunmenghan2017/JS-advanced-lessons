@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+//关系一
+    function Foo(username,age){
+        this.username=username;
+        this.age=age;
+    }
+    Foo.prototype.sayHi=function(){
+        console.log(this.username+'say hi');
+    }
+    var f1=new Foo('zhangsan',22);
+    /*
+        关系一：f1对象的__proto__属性与其构造函数Foodprototype属性，指向相同，
+        所以通过Foo实例化得到的对象可以去Foo.prototype上查找方法，例如sayHi方法
+    */
+    console.log(f1.__proto__===Foo.prototype);//true
+
+//关系二
+    /*
+        关系二：Foo.prototype的__proto__属性与Object.prototype属性，指向相同，
+        所以通过Object实例化得到的对象可以去object.prototype上查找方法
+    */
+    console.log(Foo.prototype.__proto__===Object.prototype);//true
+
+//关系三
+    console.log(Object.prototype.__proto__);//null  // undefined
+    console.log(Object.prototype.__proto__===null);//true
+    /*
+    当通过”Object.prototype._proto_”获取Object原型的原型的时候，
+    将会得到”null”，也就是说”Object {}”原型对象就是原型链的终点了。
+    */
+
+//关系四
+    console.log(Foo.prototype==Foo.prototype); //true  
+    /*
+    Foo对象本身是一个函数对象。 既然是Foo函数，就肯定会有prototype属性，
+    所以可以看到”Foo.prototype”的值就是”Foo {}”这个原型对象
+    */
+
+//关系五
+    console.log(Foo.prototype.constructor === Foo);//true
+    /*
+    当访问”Foo.prototype”对象的”constructor”这个属性的时候，就得到了Foo函数。
+    */
+
+//关系六
+    function Function(){};
+    var Foo=Function.create();
+    console.log(Foo.__proto__===Function.prototype);//false
+
+//关系七
+    console.log(Function.prototype.__proto__===Object.prototype);//true
+
+//关系八
+    function Object(){};
+    var o1=new Object();
+    /*
+        关系八：o1对象的__proto__属性与Object.prototype属性，指向相同，
+        所以通过Object实例化得到的对象可以去object.prototype上查找方法，
+    */
+    console.log(o1._proto_===Object.prototype);//true
+
+//关系九
+    console.log(Object.prototype===Object.prototype);//true
+    /*
+    Object对象本身是一个函数对象。 既然是Object函数，就肯定会有prototype属性，
+    所以可以看到”Object.prototype”的值就是”Object {}”这个原型对象
+    */
+
+//关系十
+    console.log(Object.prototype.constructor === Object);//true
+    /*
+    当访问”Object.prototype”对象的”constructor”这个属性的时候，就得到了Obejct函数。
+    */
+
+//关系十一
+    var Object=Function.create();
+    console.log(Object.__proto__ === Function.prototype);//false
+
+//关系十二
+    console.log(Function.prototype===Function.prototype);//true
+    /*
+    Function对象作为一个函数，就会有prototype属性，该属性将对应”function () {}”对象
+    */
+    
+//关系十三
+    console.log(Function.prototype.constructor === Function);//true
+    
+//关系十四
+    console.log(Function.__proto__ === Function.prototype); //true
+    /*
+    Function对象作为一个对象，就有__proto__属性，该属性对应”Function.prototype”，
+    也就是说，”Function._proto_ === Function.prototype”。
+    */
+</script>
+</html>

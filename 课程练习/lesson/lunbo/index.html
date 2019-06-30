@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css" />
+</head>
+<body>
+        <div class="jsjy_LL" id="picList" style="position:relative;left: 50%;margin-left: -175px;">
+            <div style="position:absolute">
+                <a href="#" target=_blank><img src="./img/1.jpg" class="ysjy_img" width="350px" height="200px" /></a>
+                <p class="jsjy_LL_title">我校召开2018-2020届家长委员会大会</p>
+            </div>
+            <div style="position:absolute">
+                <a href="#" target=_blank><img src="./img/2.jpg" class="ysjy_img" width="350px" height="200px" /></a>
+                <p class="jsjy_LL_title">传递五四精神 铸就青春华章——我校举行纪...</p>
+            </div>
+            <div style="position:absolute">
+                <a href="#" target=_blank><img src="./img/3.png" class="ysjy_img" width="350px" height="200px" /></a>
+                <p class="jsjy_LL_title">2019十大最受欢迎班主任</p>
+            </div>
+            <ul style="position:absolute;" id="itemlist">                
+                <li class="active">
+                    <a href="##">1</a>
+                </li>
+                <li>
+                    <a href="##">2</a>
+                </li>
+                <li>
+                    <a href="##">3</a>
+                </li>
+            </ul>
+        </div>
+</body>
+<script>
+    (function(d,w){
+
+        function Init(index) {
+            this.index=index;
+        }
+        Init.prototype.start=function(callback){
+            this.callback = callback || function() {};
+            this.index;
+            var index=0;
+            var picList=document.getElementById('picList'),
+            imgic=document.getElementsByTagName("img"),
+            pic=document.getElementsByTagName("p"),
+            list=document.getElementById('itemlist').getElementsByTagName('li'),
+            timer=null;
+            // 定义并调用自动播放函数
+            timer = setInterval(autoPlay, 2000);
+            // 鼠标划过整个容器时停止自动播放
+            picList.onmouseover = function () {
+                clearInterval(timer);
+            }
+            // 鼠标离开整个容器时继续播放至下一张
+            picList.onmouseout = function () {
+                timer = setInterval(autoPlay, 2000);
+            }
+            // 遍历所有数字导航实现划过切换至对应的图片
+            for (var i = 0; i < list.length; i++) {
+                (function(i){
+                    list[i].onmouseover = function () {
+                        clearInterval(timer);
+                        index = this.innerText - 1;
+                        change(index);
+                    };
+                })(i)
+            };
+            function autoPlay () {
+                if (++index >= pic.length) index = 0;
+                change(index);
+            }
+            // 定义图片切换函数
+            function change (curIndex) {
+                for (var i = 0; i < pic.length; ++i) {
+                    imgic[i].style.display = "none";
+                    pic[i].style.display = "none";
+                    list[i].className = "";
+                }
+                imgic[curIndex].style.display = "block";
+                pic[curIndex].style.display = "block";
+                list[curIndex].className = "active";
+            }
+            return this;
+        }  
+        window.Init=Init;
+    })(document,window);
+
+    var a=new Init(0);
+    a.start();
+</script>
+
+</html>

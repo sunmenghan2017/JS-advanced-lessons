@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+//任务02-1
+//孙梦涵
+//2017011845
+//4班
+//2019-03-16
+    function newclone(obj) {
+        for (var i in obj) {
+            switch(typeof obj[i]){
+                case 'number': console.log(obj[i].toFixed(2));break;
+                case 'string': console.log(obj[i].trim());break;
+                case 'boolean': console.log(Number(obj[i]));break;
+            } 
+        } 
+        return obj;   
+    }
+    var arr =new Array(1234.567,"  sunmenghan  ",true);
+    newclone(arr);
+
+//任务02-2
+//孙梦涵
+//2017011845
+//4班
+//2019-03-16  
+    var fun = function(obj){
+        var str="赵钱孙李周吴郑王冯陈楮卫蒋沈韩杨朱秦尤许何吕施张孔曹严华金魏陶姜";
+        var brr=str.split('');
+        for(var i in brr){
+            if(i==31 && obj!=brr[i]){
+                console.log("该姓氏不存在");
+                break;
+            } 
+            if(i<=31 && obj==brr[i]){
+                console.log(i);
+                if(i==0){
+                    console.log("该姓氏之前姓氏不存在");
+                }else{
+                    console.log(str.substr(0,i));
+                }
+                break; 
+            }  
+        }
+    }
+    fun("黄");
+    fun("赵")
+    fun("卫");
+    
+
+</script>
+</html>

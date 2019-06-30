@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /* js是基于对象的继承方式 */
+    var obj={
+        num:1,
+        str:'hi',
+        sayHi:function(){
+            console,log(this.str);
+        }
+    };
+    var newObj=Object.create(obj);
+    console.log(newObj.__proto__==obj);
+    console.log(newObj.num);
+    newObj.sayHi();
+//基于构造函数的原型继承
+    var obj={
+        num:1,
+        str:'hi',
+        sayHi:function(){
+            console,log(this.num);
+        }
+    };
+    var newObj=Object.create(obj);
+    newObj.num=2;
+    newObj.sayHi();
+
+
+    //obj.__proto__==Object.prototype
+    //Object.prototype.__proto__==null
+    var obj1={z:3};
+    console.log(obj1.__proto__);//有
+    console.log(obj1.__proto__.__proto__);//null
+
+    var o1={x:1};
+    var o2=Object.create(o1);
+    console.log(o2.__proto__);//o1
+    console.log(o2.__proto__.__proto__);
+    console.log(o2.__proto__.__proto__.__proto__);
+
+
+    
+
+
+    var proObj={z:3};
+    var ob=Object.create(proObj);
+    ob.x=1;
+    ob.y=2;
+    console.log(ob.x);//1
+    console.log(ob.y);//2
+    console.log(ob.z);//3
+    "z"in ob;//true
+    ob.hasOwnProperty("z");//false
+
+    ob.z=5;
+    ob.hasOwnProperty("z");//true
+    ob.z;//5
+    proObj.z;//still 3
+    ob.z=8;
+    ob.z;//8
+    delete ob.z;//true
+    ob.z;//
+    delete ob.z;//true
+    ob.z;//still 3!!!
+
+//构造函数实例化对象
+    function Person(age,name) {
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.sayHi = function () {
+        console.log("Hi,i'm "+this.name);
+    };
+    var p1 = new Person(20,"Jack");
+    console.log(p1.name);
+    console.log(p1.age);
+    p1.sayHi();
+    /*
+    function Person(name) {
+        this.name = name;
+        this.age = 21;
+    }
+    Person.prototype.sayHi = function () {
+        console.log("Hi,i'm ",this.name,this.age,"years old!");
+    };
+
+    var p1 = new Person("Mike");
+    console.log(p1.name);
+    console.log(p1.age);
+    p1.sayHi();
+    //name和age属性是定义在p1上了，还是定义在p1的原型上了
+    //sayHi方法是定义在p1上了，还是定义在p1的原型上了
+    //分析一下访问和调用的过程是怎样的
+
+
+    //分析：属性和方法定义在构造函数中和写在prototype上这两种情况有什么不同?
+    //没有私有属性情况下，常将方法添加到构造函数的prototype属性上，实现方法共享
+    //而属性根据情况来确定是定义在构造函数中,还是定义在构造函数的prototype（即实例化对象的原型上）属性上
+
+    console.log(p1.__proto__ === Person.prototype);
+    */
+
+    //定义一个车（car）的对象,height,width,weight
+    var car ={
+        height:150,
+        width:200,
+        weight:2000
+    };
+    //创建一个小轿车(smallcar)的对象，继承车相关的属性，自己具有color，seatNum
+    //create方法
+    var samllcar =Object.create(car);
+    smallcar.color="red";
+    smallcar.seatNum=7;
+    console.log(smallcar);
+    console.log(smallcar.height);
+    //构造函数的形式
+    function createSmallCar(color,seatNum){
+        this.color=color;
+        this.seatNum=seatNum;
+    }
+    createSmallCar.prototype = car;
+    var smallCar = new createSmallCar("red",4);
+</script>
+</html>

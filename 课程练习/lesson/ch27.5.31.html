@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    ...理解为剩余运算符，自动匹配剩余的元素
+    */
+    let [head,...tail]=[1,2,3,4];
+    console.log(head,tail);
+
+    /*
+    左侧元素多余右侧
+    */
+    let [d,e,...f]=['a'];
+    console.log(d,e,f);
+
+/*ch29*/
+//静态方法
+    /*将类数组结构转化为数组*/
+        console.log(Array.from("abcdef"));
+        function fn1(){
+            Array.from(arguments);
+        }
+        fn1(1,2,3);
+    /*将单个的元素转化为数组*/
+        console.log(Array.of(1,2,3)); 
+//prototype
+    /*  */
+    copyWithin()
+
+    /**/
+    /**/
+  
+</script>
+</html>

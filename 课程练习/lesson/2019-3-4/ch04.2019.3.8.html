@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    
+    //变量
+    //表达式
+    //ES ECMAScript简写，语言标准
+    //ES5 
+    if(true){
+        var a=1;
+    }
+    //a=2;
+    console.log(a);
+
+    for(var i=0;i<3;i++){
+
+    }
+    console.log(i);
+    //对当前页面的所有JS都使用严格模式
+    'use strict'
+
+    function fn1(){
+        //对函数
+    }
+    //如果变量不使用var声明，会自动提升为全局变量
+    //js最大的缺陷，自动提升为全局变量？
+
+    function fun(){
+        //非严格模式下，普通函数的内部this指向window
+        //严格模式下，this指向undefined
+        'use strict'
+        console.log(this);
+        
+    }
+    //可以用此特性（this的指向）来判断当前是否为严格模式
+    function fn2(){
+        //'use strict'  结果则为true
+        var result =(this === undefined?true:false);
+        return result;
+    }
+    consolelog(fn2());//false
+
+    //严格模式下禁止函数参数重名
+    //①var②this属性③
+
+
+    var index=1;
+    //switch case是进行的值和类型的判断， 不会发生隐性的类型转换
+    switch(index){
+        case 1:
+            console.log("星期一");
+            break;
+        case 2:
+            console.log("星期二");
+            break;
+        default:
+            console.log("均不符合");
+            break;
+
+    }
+    //switch的穿透性
+</script>
+</html>

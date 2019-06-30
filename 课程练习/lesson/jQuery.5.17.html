@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+    <table width='200px' height='100px' border="1" cellpadding='0' cellspacing='0'>
+        <th>
+            <td></td>
+            <td></td>
+        </th>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>                                                                                                                                                                                                                                                                                                                                      
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div>自定义动画</div>
+    <button id="animate"></button>
+</body>
+
+<script>
+//jQuery
+
+/*
+//基本选择器
+//过滤选择器
+$("td:first").css("background","red");
+
+//eq(index)选中特定索引值的元素
+//gt(index)选中索引值大于index的元素
+//lt(index)选中索引值小于index的元素
+//not(selector)不为空的元素
+$("td:eq(1)").css("background","red");
+$("not(#td1)").css("background","pink");
+
+//jQuery,事件方法（回调函数）
+*/
+
+/*
+$("").slideUp(1000);
+$("").slideDown(1000);
+
+$("").fadeIn(1000);
+$("").fadeOut(1000);
+*/
+
+$("#btn").click(function(){
+    /*动画的同步执行*/
+    $("div").animate({
+        "margin-left":"400px",
+        "margin-top":"200px"
+    },3000);
+    /*顺序执行*/
+    $("div").animate({
+        "margin-left":"400px"
+    },2000).animate({
+        "margin-top":"200px"
+    },2000);
+</script>
+</html>

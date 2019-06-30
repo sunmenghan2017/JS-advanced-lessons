@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //装箱操作
+    var str1="abcdef";
+    var strObject=new String(str1);
+    strObject.substr(0,2);
+
+    //临时对象，使用完成之后会立即释放
+    var str="test";
+    str.p = 4;//设置临时对象属
+    var t = str.p; // 临时对象已释放，再输出t时为undefin
+</script>
+</html>

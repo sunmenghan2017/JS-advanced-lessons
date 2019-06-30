@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //JS预解析（声明提升）
+    
+    //变量
+    console.log(a);
+    if(true){
+        var a=1;
+    }
+    console.log(a);
+
+    //函数
+    //
+    
+    //该种情况时，仅会对变量进行定义的提升
+
+    //当function前有运算符的话，认定为表达式，不提升
+
+
+    //作用域及执行上下文
+    var a=1;
+    function fn1(){
+        console.log(a);//1
+        var b=2,c=3;
+        function bar(){
+            var c=30,d=4;
+            console.log(c);//30
+        } 
+        bar();
+        console.log(c);
+        //console.log(d);
+    }
+    fn1();
+
+    //function fn1(){
+    //    function fn2(){
+    //        var d;
+    //    }    
+    //}
+
+
+    //JS作用域特点
+
+    var name ='jack';
+    function echo(){
+        name='billbill';
+        console.log(name);
+    } 
+    function env(){
+        var name='bill';
+        echo();
+    }
+    env();
+    
+
+    //块级作用域
+
+
+    //作用域链与执行上下文
+
+    
+</script>
+</html>

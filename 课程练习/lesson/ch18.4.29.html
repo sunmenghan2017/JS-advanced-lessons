@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" class="=forminput" id='username'>
+</body>
+<script>
+//ch17.js继承补充
+ /*   function BaseClass(){
+
+    }
+    BaseClass.fn1= function (){
+        console.log('静态方法');
+    }
+    BaseClass.fn1();
+
+    BaseClass.prototype.fn2=function(){
+        console.log('原型方法');
+    }
+    var base=new BaseClass();
+    console.log(base.__proto__==BaseClass.prototype);
+    base.fn2();
+*/
+
+ /*   function Person(username,age){
+        this.username=username;
+        this.age=age;
+    }//构造函数
+    Person.prototype.constructor==Person;
+
+    //实例化
+    var person=new Person('张三',20);
+    person.constructor==Person;
+
+
+    var obj=new Object();
+    obj.constructor==Object;
+*/
+    (function(w,d){
+        /*构造函数，会有配置参数*/
+        function inputIdentify(inputId){
+            this._init(inputId);//初始化
+            this._effect();//交互
+        }
+        //方法定义在构造函数的prototype上
+        inputIdentify.prototype._init=function(inputId){
+            var inputObject=d.getElementById(inputId);
+            this.inputObject=inputObject;
+        }
+        inputIdentify.prototype._effect=function(){
+            this.inputObject.onblur=function(){
+                alert('失去焦点');
+            }
+            this.inputObject.onfocus=function(){
+                alert('获得焦点');
+            }
+        }
+        w.inputIdentify=inputIdentify;//添加到window对象上
+    })(window,document)//立即执行
+    //实例化
+    var input1=new inputIdentify('username');
+    
+//ch18
+    /*Array*/
+    //数组创建和基本操作
+    var arr1=['a','b','c','d'];
+    var arr2=arr1;
+    arr1[0]='e';
+    console.log(arr2);//['e','b','c','d']
+
+    //稀疏数组
+    var arr3=[,2,,4];
+    /*Array.prototype.min=function(){
+        return min;
+    }扩展*/
+    console.log(arr3.length);
+    for(var i in arr3){
+        console.log(i,arr3[i]);
+    }//可将扩展的显示出来
+
+    //多维数组（矩形数组，交错数组）
+    /*js中可以通过包含数组的数组来模拟多维数组*/
+    var table =new Array(5);
+    for(var i=0;i<table.length;i++){
+        table[i]=new Array(5);
+    }
+    for(var row=0;row<table.length;row++){
+        for(var col=0;col<table[row].length;col++){
+            table[row][col]=row*col;
+        }
+    }
+    var product=table[2][4];
+
+    //Array.from();从一个类似数组或可迭代对象创建一个新的数组实例
+    //demo7 
+
+    //
+    var arr1=[a,b,c,d];
+    arr1.forEach(function(element) {
+        console.log(element);
+    })
+
+    /*
+    forEach（callback，thisArg）
+    callback(element,index,arr)
+    element遍历数组每次取到的数组元素值
+    index每次取到的数组元素的索引
+    arr操作的数组
+    thisArg可以指明回调函数内部this的指向
+    */
+    var arr2=['a','b','c','d'];
+    arr2.forEach(function(element,index,arr2) {
+        console.log(element,index,arr2);
+        window.x=0;
+    },window)
+
+
+    //every
+    var arr3=[10,20,30,40];
+    var result= arr3.every(function(value){
+        return value>5;//ture
+        //return value>20;//false
+    });
+    console.log(result);
+
+    //some
+
+
+    //map
+    var arr4=[10,20,30,40];
+    var arr5= arr4.map(function(element){
+        return element*2;
+    });
+    console.log(arr5);
+
+    
+
+</script>
+</html>

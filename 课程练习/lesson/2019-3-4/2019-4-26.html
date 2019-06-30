@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var superObj={
+        x:1,
+        y:2
+    };
+    var superObj_First=Object.create(superObj);
+    var superObj_Second=Object.create(superObj);
+    superObj_First.__proto__.x=5;
+    console.log(superObj_Second.x);
+
+    function Person(name){
+        this.name=name;
+    }
+    Person.prototype.age=20;
+    Person.prototype.showName=function(){
+        console.log(this.name);
+    }
+    function Student(id){
+        this.id=id;
+    }
+    /*
+    person name属性mike, person.__proto__.age
+    person.__proto__.showName   
+    */
+    Student.prototype=new Person('mike');
+    Student.prototype=peron;
+    var s1=new Student(2017001);//构造函数实例化
+    var s2=new Student(2017002);
+    console.log(s1.id,s2.id);
+    /*
+    s1自身没有age.  s1.__proto__==Student.prototype
+    Student.prototype=person;person对象上没有age属性
+    s1.__proto__.__proto__==person.__proto__
+    person.__proto__==Person.prototype
+    */
+    console.log(s1.age,s2.age);
+
+
+//
+
+    //模拟类-类继承
+    function Person(name,age){
+        this.name=name;
+        this.age=age;
+    }
+    Person.prototype.showName=function(){
+        console.log(this.name);
+    }
+    function Student(name,age,id){
+        Person.call(this,name,age);
+        this.id=id;
+    }
+    Student.prototype.__proto__=Person.prototype;
+    var s1=new Student('jjh',22,2017011);
+    var s2=new Student('jhh',20,2017012);
+
+    
+</script>
+</html>

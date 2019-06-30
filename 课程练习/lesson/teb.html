@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/tab.css">
+	
+</head>
+<body>
+	<div class="logincontainer" id="logincontainer" style="margin: 0 auto;">
+		<div class="tabtitle">
+			<div class="login-tab saomalogin active">扫码登录</div>
+			<div class="login-tab userlogin">帐户登录</div>
+		</div>
+		<div class="tab-item" >
+			<img src="img/show.png">
+		</div>
+		<div class="tab-item" style="display: none;">
+			<div class="inputcontainer">
+				<label for="loginname" class="login-label"></label>
+				<input id="loginname" type="text" class="itxt" name="loginname" tabindex="1" autocomplete="off" placeholder="邮箱/用户名/已验证手机">
+			</div>
+			<div class="inputcontainer">
+				<label for="loginname" class="login-label pwd"></label>
+				<input id="pwd" type="text" class="itxt" name="pwd" tabindex="1" autocomplete="off" placeholder="密码">
+			</div>
+			<div class="loginbtn">
+				<a href="javascript:;" class="btn-img btn-entry" id="loginsubmit" tabindex="6" clstag="pageclick|keycount|201607144|3" style="outline: rgb(109, 109, 109) none 0px;">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
+			</div>
+		</div>
+		
+	</div>
+</body>
+<script>
+/*	//避免闭包中非期望的变量共享问题
+    var tabtitle = document.getElementsByClassName('tabtitle')[0].children;
+    var tabitem = document.getElementsByClassName('tab-item');
+    for(var i=0;i<tabtitle.length;i++) {
+        (function (j) { 	//IIFE start
+            tabtitle[0].onmouseover=function(){
+				tabtitle[0].className = 'login-tab saomalogin active';
+                tabtitle[1].className = 'login-tab userlogin';
+				tabitem[(j+1)%tabitem.length].style.display='block' ;
+				tabitem[j].style.display='none' ;
+			}
+			tabtitle[1].onmouseover=function(){
+				tabitem[j].style.display='block' ;
+				tabitem[(j+1)%tabitem.length].style.display='none' ;
+				tabtitle[0].className = 'login-tab saomalogin';
+                tabtitle[1].className = 'login-tab userlogin active';
+            }
+        }(i));			//IIFE end
+    }
+
+	//提示框
+	var tabinput = document.getElementsByTagName('input');
+	(function (i) { 
+		// 账户栏 ，若账户为空，则弹出提示框
+		tabinput[i].onfocus=function(){
+			tabinput[i].onblur =function(){
+				if(tabinput[i].value.length==0){
+					alert("用户名不能为空");
+					return false;
+				}
+			}
+		}
+		// 密码栏 ，若密码为空，则弹出提示框
+		tabinput[i+1].onfocus=function(){
+			tabinput[i+1].onblur =function(){
+				if(tabinput[i+1].value.length==0){
+	 				alert("密码不能为空");
+					return false;
+				}
+			}
+		}
+	}(0));
+*/		
+   //执行一次不再复用,将代码作用于独立，将d，w传入作为局部变量
+   (function(d,w){
+		var tabTitleList=document.getElementsByClassName("login-tab");
+		var tabItemList=document.getElementsByClassName("tab-item");
+		for(var i=0;i<tabTitleList.length;i++){
+			(function(j){
+				tabTitleList[j].onmouseover=function(){
+					for(var m=0;m<tabTitleList.length;m++){
+						if(m==j){
+							tabItemList[j].style.display='block';//显示内容
+							tabTitleList[j].classList.add('active');//标题切换，字体颜色
+						}else{
+							tabItemList[m].style.display='none';
+							tabTitleList[m].classList.remove('active');
+						}
+					}
+				}
+				
+
+			})(i)
+		}
+   })(document,window);
+
+   (function(d,w){
+		//输入框空白检测
+   })(document,window);
+   
+</script>
+</html>

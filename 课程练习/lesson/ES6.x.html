@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    基本数据类型：
+    Symbol(表示独一无二的值，不会出现同名,不需要new)，String,Boolean,Number,Null,Undefined
+    
+    （ES6新增）Set(需要new),Map
+</body>
+<script>
+    /*Symbol作为对象的属性名，永远不会重复
+    对象[]
+    {
+    [symbol]:属性值
+    }
+    */
+var mysymbol=Symbol();
+var a={};
+a[mysymbol]='hello';//①
+var a={
+    [mysymbol]:'hello'
+};//②
+var a={};
+Object.defineProperty(a,mysymbol,{value:'hello'});//③
+//以上写法均得到同样结果
+a[mysymbol]//"hello"
+
+
+let s1=Symbol.for("foo");
+let s2=Symbol.for("foo");
+console.log(s1===s2);//true
+
+let bar=Symbol('fo');
+console.log(Symbol.for('fo')===Symbol.for('fo'));//true
+console.log(Symbol('fo')===Symbol('fo'));//false
+console.log(Symbol.for('fo')===Symbol('fo'));//false
+
+
+/*Set*/
+
+let se1=new Set([1,2,3,4,5,1,2]);
+console.log(se1);//去重复值
+
+/*Map*/
+let m1=new Map([
+    ["username","zhangsan"],
+    ["age",20],
+    ["sex","male"]
+]);
+
+console.log(m1.keys());
+for(let j of m1.keys()){
+    console.log(j);
+}
+console.log(m1.size);
+for(let i of m1){
+    console.log(i);
+}
+m1.set("weight","60kg");
+m1.get("username");
+m1.delete("username");
+m1.has("sex");
+
+/*类 Class*/
+
+class Point{
+    constructor(){
+        this.x=1;
+        this.y=1;
+    }
+    show(){
+        console.log(this.x);
+    }
+    showy(){
+        console.log(this.y);
+    }
+}
+console.log(typeof Point);
+
+let p1=new Point();
+let p2=new Point();
+p1.__proto__==p2.__proto__;
+p1.show();
+
+//静态方法static
+//静态方法通过类进行调用
+//静态方法内部的this指向类本身
+class Foo{
+    constructor(){
+        this.x=1;
+    }
+    static showP(){
+        console.log(this);
+    }
+}
+Foo.showP();
+//es6不支持静态属性
+
+//实例属性，constructor 的this 添加
+
+/*继承的实现方式*/
+let obj1={"x":1};
+let obj2=Object.create(obj1);
+console.log(obj2.x);
+//或
+let obj3={"y":2};
+obj4.__proto__=obj3;
+//基于构造函数的继承
+function fn1(){
+    this.x=1;
+}
+fn1.prototype.show=function(){
+    console.log(this.x);
+}
+let obj5=new fn1();
+
+function Child(x,y){
+    this.x=x;
+    this.y=y;
+}
+function Parent(x,y,z){
+    Child.call(this,x,y);
+    this.z=z;
+}
+let p1=new Parent(1,2,3);
+console.log(p1);
+//子继承父
+//必须在super之后this
+//若super在子类的原型方法中，指向父类的prototype
+class Paren{
+    constructor(x,y){
+        this.x=x;
+        this.y=y;
+    }
+    pshow(){
+        console.log(0);
+    }
+}
+class Chil extends Paren {
+    constructor(x,y,z){
+        super(x,y);//调用父类的构造函数
+        this.z=z;
+    }
+    showw(){
+        super.pshow();//指代父类构造函数的原型对象
+        console.log(this);
+    }
+}
+let c1=new Chil(1,2,3);
+console.log(c1);
+c1.showw();
+</script>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <title>
+            calculate
+        </title>
+        <meta http-equiv="Content-Type" content="text/html;charaset = utf-8" />
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <style type="text/css">
+            body {
+                font:bolder 26px 楷体;
+            }
+            #result {
+                text-align:right;
+            }
+            table,td {
+                border:1px solid #C0C0C0;
+            }
+            td {
+                padding:10px;
+            }
+            button {
+                width:50px;
+                height:50px;
+            }
+            button:hover{
+                box-shadow:   3px 3px 3px #eee;
+            }
+        </style>
+        <script>
+            function show(button){
+                var result="0";
+                var str="";
+                var str1="";
+                var value=$(button).val();
+                if(value=="C"){
+                    $("#result").html("0");
+                }
+                else if(value=="="){
+                    str=$("#result").html();
+                    result=eval(str);
+                    result=result.toFixed(2);
+                    $("#result").html(result);
+                }
+                else{
+                    if($("#result").html()==0){
+                        $("#result").html(value);
+                    }
+                    else{
+                        str1=$("#result").html();
+                        $("#result").html(str1+value);
+                    }    
+                }    
+            }
+        </script>
+    </head>
+    
+    <body>
+        <table>
+            <tr>
+                <td colspan="3" id="result">
+                    0
+                </td>
+                <td>
+                    <button type="button" value="C" onclick="show(this)">
+                        C
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" value="1"  onclick="show(this)">
+                        1
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="2" onclick="show(this)">
+                        2
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="3" onclick="show(this)">
+                        3
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="+" onclick="show(this)">
+                        +
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" value="4" onclick="show(this)">
+                        4
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="5" onclick="show(this)">
+                        5
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="6" onclick="show(this)">
+                        6
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="-" onclick="show(this)">
+                        -
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" value="7" onclick="show(this)">
+                        7
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="8" onclick="show(this)">
+                        8
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="9" onclick="show(this)">
+                        9
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="*" onclick="show(this)">
+                        *
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" value="0" onclick="show(this)">
+                        0
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="." onclick="show(this)">
+                        .
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="=" onclick="show(this)">
+                        =
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="/" onclick="show(this)">
+                        /
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </body>
+    
+</html>
